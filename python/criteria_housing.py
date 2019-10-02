@@ -1,7 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt 
 
-def dataframe_cleaner(df):
+def dataframe_builder(df):
     """This function takes in a pandas dataframe
         and gets rid of columns with 25% percent
         of null data. It returns a dataframe"""
