@@ -30,7 +30,7 @@ def return_plotter(df):
     sorted_yr_returns = sorted(yr_returns.items(), key = lambda x: x[1], reverse=True)
     top_five = sorted_yr_returns[:5]
 
-    for zipcode, retur in top_five:
+    for zipcode,retur in top_five:
         df_return[zipcode].plot()
         plt.legend()
     return plt.show()
