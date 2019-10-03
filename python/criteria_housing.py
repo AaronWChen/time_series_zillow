@@ -1,3 +1,5 @@
+# helper functions for cleaning data and criteria dataframe builders
+
 import pandas as pd
 from matplotlib import pyplot as plt 
 
