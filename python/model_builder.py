@@ -5,6 +5,7 @@ import statsmodels.api as sm
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.arima_model import ARMA, ARIMA
 import numpy as np
+from matplotlib import pyplot as plt
 
 def dataframe_cleaner (df):
     """Takes in a pandas dataframe and 
@@ -72,6 +73,19 @@ def arima_model(data):
             else:
                 break  
     return test_model
+
+def model_plotter(data):
+    """This function takes in a pandas 
+    series and plots arima model forecast and actual prices"""
+    model = arima_model(data)
+    forcast= model.predict(1, 300, typ='levels')
+    forcast_dollars= model.predict(1, 300, typ='levels')
+    plt.plot(data[0] + np.cumsum(forcast_dollars), label='predicted')
+    plt.plot(data.values, label = 'actual')
+    plt.legend()
+    return plt.show()
+
+
     
 
 
