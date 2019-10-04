@@ -43,25 +43,37 @@ def stationarity_test(df, conversion):
                 break 
         return test_stationary
 
-def model(df):
-    """Takes in a stationary pandas series and
-        gives back ARIMA model for your series"""
+def arima_model(data):
+    """This funtion takes in a pandas series
+    and the optimal AutoRegressive Integrated Moving 
+    Average(ARIMA) time series model using an AR order 
+    1-8(p), the differencing parameter(I) of  1 and MA(q)
+    values of 1-4. It returns a statsmodel object.
+    """
     
-    model_params = []
-    model_lowestbic = []
+    stationarydata = data.diff().dropna().values
+    model_params = {}
+    lowest_bic = None
     
-    for p in range(1,3):
-        for q in range(1,3):
-            test_model = ARIMA(df, (p,0,q)).fit()
+    for p in range(1, 8):
+        for q in range(1,10):
+            test_model = ARIMA(stationarydata, (p,1,q)).fit()
             test_bic = test_model.bic
-            model_params.append((p, q, test_model, test_bic))
-    for tup in model_params:
-        model_lowestbic.append(tup[3])
-        
-    lowest_bic = min(model_lowestbic)
-    for tup in model_params:
-        if tup[3]==lowest_bic:
-            return tup[2].plot_predict(1, 275)
+
+            if lowest_bic is None:
+                lowest_bic = test_bic
+            elif lowest_bic > test_bic:
+                lowest_bic = test_bic
+
+                model_params['lowest_bic'] = lowest_bic
+                model_params['p'] = p
+                model_params['q'] = q
+                model_params['test_model'] = test_model
+            else:
+                break  
+    return test_model
+    
+
 
 
 
