@@ -1,2 +1,14 @@
-zillow_data.csv
+data/zillow_data.csv
+data/rootkey\ \(1\).numbers
 
+.ipynb_checkpoints/
+
+.DS_Store
+
+write_data/1500
+write_data/changepoint1
+write_data/prev
+write_data/too\ many\ changepoints
+write_data/New\ Folder\ With\ Items
+write_data/changepointhistory\ too\ high
+write_data/changed\ all\ params
