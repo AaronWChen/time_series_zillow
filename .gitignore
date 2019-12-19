@@ -12,3 +12,7 @@ write_data/too\ many\ changepoints
 write_data/New\ Folder\ With\ Items
 write_data/changepointhistory\ too\ high
 write_data/changed\ all\ params
+
+.vscode/
+
+data/zillow_data.txt
